@@ -22,7 +22,7 @@ public class ServiceImpl implements UserService {
 
             return new BaseResult(204, "账号空", null);
         }
-        if (StringUtils.isEmpty(loginRep.getPsaaword())) {
+        if (StringUtils.isEmpty(loginRep.getPassword())) {
 
             return new BaseResult(204, "密码空", null);
         }
@@ -34,10 +34,10 @@ public class ServiceImpl implements UserService {
             return new BaseResult(204, "账号不存在", null);
         }
 
-        TUser login = testMapp.login(loginRep.getPhone(), loginRep.getPsaaword());
+        TUser login = testMapp.login(loginRep.getPhone(), loginRep.getPassword());
         if (login == null) {
             return new BaseResult(204, "账号密码错误", null);
         }
-        return new BaseResult(200, "登录成功", login);
+        return new BaseResult<>(200, "登录成功", login);
     }
 }

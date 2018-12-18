@@ -5,7 +5,7 @@ public class LoginRep {
 
     private String phone;
 
-    private String psaaword;
+    private String password;
 
     public String getPhone() {
         return phone;
@@ -15,11 +15,11 @@ public class LoginRep {
         this.phone = phone;
     }
 
-    public String getPsaaword() {
-        return psaaword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPsaaword(String psaaword) {
-        this.psaaword = psaaword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

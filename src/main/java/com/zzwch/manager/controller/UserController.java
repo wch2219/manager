@@ -28,10 +28,10 @@ public class UserController extends BaseController{
     private UserService service;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public BaseResult login(@RequestParam Map<String,Object> map){
-        LoginRep loginRep = new LoginRep();
-        loginRep.setPhone((String) map.get("phone"));
-        loginRep.setPsaaword((String) map.get("password"));
+    public BaseResult login(@RequestBody LoginRep loginRep){
+//        LoginRep loginRep = new LoginRep();
+//        loginRep.setPhone((String) map.get("phone"));
+//        loginRep.setPsaaword((String) map.get("password"));
 
         BaseResult user = service.login(loginRep);
 

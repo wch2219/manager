@@ -13,7 +13,6 @@ public class TUser {
   private String userEmail;
   private Date userCreateTime;
   private Date userUptime;
-  private String userPassword;
   private String token;
 
 
@@ -89,13 +88,6 @@ public class TUser {
   }
 
 
-  public String getUserPassword() {
-    return userPassword;
-  }
-
-  public void setUserPassword(String userPassword) {
-    this.userPassword = userPassword;
-  }
 
 
   public String getToken() {

@@ -4,9 +4,9 @@ import org.springframework.lang.NonNull;
 
 import javax.validation.constraints.NotNull;
 
-public class BaseResult {
+public class BaseResult<T> {
 
-    public BaseResult(int code, @NonNull String mess, @NotNull Object o) {
+    public BaseResult(int code, @NonNull String mess, @NotNull T o) {
        this.code = code;
        this.mess = mess;
        this.result =o;
@@ -14,7 +14,7 @@ public class BaseResult {
 
     private int code;
     private String mess;
-    private Object result;
+    private T result;
 
     public int getCode() {
         return code;
@@ -32,11 +32,11 @@ public class BaseResult {
         this.mess = mess;
     }
 
-    public Object getObject() {
+    public T getResult() {
         return result;
     }
 
-    public void setObject(Object object) {
-        this.result = object;
+    public void setResult(T result) {
+        this.result = result;
     }
 }
