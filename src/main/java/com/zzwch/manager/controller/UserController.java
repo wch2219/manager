@@ -1,6 +1,7 @@
 package com.zzwch.manager.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.zzwch.manager.entry.ReponceEnt.LoginRep;
 import com.zzwch.manager.entry.ResultEntry.BaseResult;
 import com.zzwch.manager.service.UserService;
@@ -34,7 +35,7 @@ public class UserController extends BaseController{
 //        loginRep.setPsaaword((String) map.get("password"));
 
         BaseResult user = service.login(loginRep);
-
+        System.out.println(JSON.toJSON(user));
         return user;
     }
 
@@ -72,8 +73,6 @@ public class UserController extends BaseController{
             url.add(imgPath);
 
         }
-
-
         return new BaseResult(200,"成功",url);
     }
 }
