@@ -6,10 +6,13 @@ import com.zzwch.manager.entry.ResultEntry.BaseResult;
 import com.zzwch.manager.entry.ResultEntry.TUser;
 import com.zzwch.manager.mapp.UserMapp;
 import com.zzwch.manager.service.UserService;
+import com.zzwch.manager.utils.CookieUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
 
 @Service
 public class ServiceImpl implements UserService {
@@ -17,7 +20,7 @@ public class ServiceImpl implements UserService {
     private UserMapp testMapp;
 
     @Override
-    public BaseResult login(LoginRep loginRep) {
+    public BaseResult login(LoginRep loginRep, HttpServletResponse response) {
         if (StringUtils.isEmpty(loginRep.getPhone())) {
 
             return new BaseResult(204, "账号空", null);
@@ -38,6 +41,10 @@ public class ServiceImpl implements UserService {
         if (login == null) {
             return new BaseResult(204, "账号密码错误", null);
         }
-        return new BaseResult<>(200, "登录成功", login);
+        String token = UUID.randomUUID().toString().replace("-", "");
+        login.setToken(token);
+        CookieUtil.set(response,token,token,30*60);
+
+        return new BaseResult(200, "登录成功", login);
     }
 }

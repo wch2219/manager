@@ -1,7 +1,7 @@
 package com.zzwch.manager.entry.ResultEntry;
 
 
-import java.sql.Date;
+import java.lang.String;
 
 public class TUser {
 
@@ -11,10 +11,10 @@ public class TUser {
   private String userPhone;
   private long userRank;
   private String userEmail;
-//  @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone="GMT+8")//将Date转换成String 一般后台传值给前台时
-  private Date userCreateTime;
+//  @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss", timezone="GMT+8")//将String转换成String 一般后台传值给前台时
+  private String userCreateTime;
 //  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="GMT+8")
-  private Date userUptime;
+  private String userUptime;
   private String token;
 
 
@@ -72,20 +72,20 @@ public class TUser {
   }
 
 
-  public Date getUserCreateTime() {
+  public String getUserCreateTime() {
     return userCreateTime;
   }
 
-  public void setUserCreateTime(Date userCreateTime) {
+  public void setUserCreateTime(String userCreateTime) {
     this.userCreateTime = userCreateTime;
   }
 
 
-  public Date getUserUptime() {
+  public String getUserUptime() {
     return userUptime;
   }
 
-  public void setUserUptime(Date userUptime) {
+  public void setUserUptime(String userUptime) {
     this.userUptime = userUptime;
   }
 

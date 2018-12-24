@@ -6,10 +6,11 @@ import javax.validation.constraints.NotNull;
 
 public class BaseResult<T> {
 
+
     public BaseResult(int code, @NonNull String mess, @NotNull T o) {
-       this.code = code;
-       this.mess = mess;
-       this.result =o;
+        this.code = code;
+        this.mess = mess;
+        this.result = o;
     }
 
     private int code;
