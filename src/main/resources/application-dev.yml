@@ -5,7 +5,6 @@ spring:
   resources:
       static-locations: D://upload/
 
-
   #  emailNo: 18539764384@163.com
   #  emailPassword: pass1234
   #  email:
@@ -53,6 +52,7 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+
 
 mybatis:
   type-aliases-package: com.example.servicemanager.entry
