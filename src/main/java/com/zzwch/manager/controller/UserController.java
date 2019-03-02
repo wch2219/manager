@@ -18,7 +18,7 @@ import java.net.InetAddress;
 import java.util.*;
 
 @RestController
-@RequestMapping("/manager/user")
+@RequestMapping("/user")
 public class UserController extends BaseController{
 
     @Value("${spring.resources.static-locations}")
@@ -54,6 +54,11 @@ public class UserController extends BaseController{
         return user;
     }
 
+    @RequestMapping(value = "hello",method = RequestMethod.GET)
+    public String hello(){
+
+        return "hello";
+    }
     @RequestMapping(value = "/token",method = RequestMethod.POST)
     public  BaseResult getUserInfo(String token, HttpServletRequest request){
 

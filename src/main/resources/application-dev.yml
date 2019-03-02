@@ -24,7 +24,7 @@ spring:
     username: root
     password: root
     druid:
-      url: jdbc:mysql://localhost:3306/login
+      url: jdbc:mysql://localhost:3306/test
       username: root
       password: root
       initial-size: 10
@@ -35,7 +35,7 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
-      validation-query: SELECT 1 FROM DUAL
+      validation-query: SELECT 1
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false

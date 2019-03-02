@@ -16,10 +16,15 @@ public class WebConfig extends WebMvcConfigurationSupport {
 //
 //
 //    }
+//
+//    @Override
+//    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/image/**").addResourceLocations("file:D://upload/");
+//
+//    }
 
     @Override
-    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/image/**").addResourceLocations("file:D://upload/");
-
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 }
