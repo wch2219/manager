@@ -34,44 +34,60 @@ public class UserController extends BaseController{
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public BaseResult login(@RequestBody LoginRep loginRep, HttpServletResponse response,HttpServletRequest request){
         String token = request.getHeader("token");
-
+        BaseResult login = service.login(loginRep, response);
         BaseResult user = service.login(loginRep,response);
         return user;
     }
+    @RequestMapping(value = "/login1",method = RequestMethod.POST)
+    public BaseResult login1(
+            @RequestParam(name = "phone",required = false,defaultValue = "") String phone,
+            @RequestParam(name = "password",required = false,defaultValue = "") String password,
+            @RequestParam(name = "fields",required = false,defaultValue = "") String fields,
+            HttpServletResponse response,HttpServletRequest request){
+        String token = request.getHeader("token");
+        LoginRep loginRep = new LoginRep();
+        loginRep.setPhone(phone);
+        loginRep.setPassword(password);
+        loginRep.setFields(fields);
+//        BaseResult login = service.login(loginRep, response);
+        BaseResult user = service.login(loginRep,response);
+        return user;
+    }
+
     @RequestMapping(value = "/token",method = RequestMethod.POST)
-    public  BaseResult<Cookie> getUserInfo(String token, HttpServletRequest request){
+    public  BaseResult getUserInfo(String token, HttpServletRequest request){
 
         Cookie cookie = CookieUtil.get(request, request.getHeader("token"));
 
 
-        return  new BaseResult<Cookie>(200,"成功",cookie);
+        return  new BaseResult(200,"成功",cookie);
     }
 
     @PostMapping("/upload")
-    public BaseResult<List<String>> upPics(@RequestParam("files")MultipartFile[] files){
+    public BaseResult upPics(@RequestParam("files")MultipartFile[] files){
         List<String> url = new ArrayList<>();
 
         if (files.length == 0) {
-            return new BaseResult<>(204,"空",null);
+            return new BaseResult(204,"空",null);
         }
         for (MultipartFile file : files) {
-            if (savePic(url, file)) return new BaseResult<>(204, "失败", null);
+            if (savePic(url, file)) return new BaseResult(204, "失败", null);
 
         }
-        return new BaseResult<>(200,"成功",url);
+        return new BaseResult(200,"成功",url);
     }
 
     @PostMapping("/uppic")
-    public BaseResult<String> upPic(@RequestParam("file") MultipartFile file){
+    public BaseResult upPic(@RequestParam("file") MultipartFile file){
         if (file == null) {
 
-            return new BaseResult<>(204,"空",null);
+            return new BaseResult(204,"空",null);
         }
         List<String> url = new ArrayList<>();
 
 
-            if (savePic(url, file)) return new BaseResult<>(204, "失败", null);
-        return new BaseResult<String>(200,"成功",url.get(0));
+            if (savePic(url, file)) return new BaseResult(204, "失败", null);
+        return new BaseResult(200,"成功",url.get(0));
     }
 
 
@@ -87,9 +103,9 @@ public class UserController extends BaseController{
             // 先判断文件是否存在
             File dest = new File(uploadPath);
             // 如果文件夹不存在则创建
-            if (!dest.exists() && !dest.isDirectory()) {
-                dest.mkdir();
-            }
+            if (!dest.exists() && !dest.isDirectory())
+
+
             targetFile = new File(dest, fileName);
             try {
                 file.transferTo(targetFile);

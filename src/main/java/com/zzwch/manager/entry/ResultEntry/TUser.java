@@ -1,8 +1,11 @@
 package com.zzwch.manager.entry.ResultEntry;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.lang.String;
 
+@JsonSerialize()
 public class TUser {
 
   private long userId;

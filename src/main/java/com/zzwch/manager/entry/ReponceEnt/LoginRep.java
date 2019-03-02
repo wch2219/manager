@@ -7,6 +7,7 @@ public class LoginRep {
 
     private String password;
 
+    private String fields;
     public String getPhone() {
         return phone;
     }
@@ -21,5 +22,13 @@ public class LoginRep {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getFields() {
+        return fields;
+    }
+
+    public void setFields(String fields) {
+        this.fields = fields;
     }
 }

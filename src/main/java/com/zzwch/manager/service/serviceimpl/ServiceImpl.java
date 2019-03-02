@@ -12,6 +12,8 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -37,14 +39,25 @@ public class ServiceImpl implements UserService {
             return new BaseResult(204, "账号不存在", null);
         }
 
-        TUser login = testMapp.login(loginRep.getPhone(), loginRep.getPassword());
+        Map<String,Object> login = testMapp.login(loginRep.getPhone(), loginRep.getPassword());
         if (login == null) {
             return new BaseResult(204, "账号密码错误", null);
         }
         String token = UUID.randomUUID().toString().replace("-", "");
-        login.setToken(token);
+        login.put("token",token);
+
+        Map<String,Object> resultMap = new HashMap<>();
+
+        String[] split = loginRep.getFields().split(",");
+
+        for (int i = 0; i < split.length; i++) {
+
+            resultMap.put(split[i],login.get(split[i]));
+        }
+
+
         CookieUtil.set(response,token,token,30*60);
 
-        return new BaseResult(200, "登录成功", login);
+        return new BaseResult(200, "登录成功", resultMap);
     }
 }
