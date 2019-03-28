@@ -1,10 +1,11 @@
 package com.zzwch.manager.mapp;
 
 
-
-import com.sun.istack.internal.NotNull;
 import com.zzwch.manager.entry.ResultEntry.TUser;
+import com.zzwch.manager.mapp.SqlUtils.UserSelect;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 
 import java.util.Map;
 
@@ -12,9 +13,9 @@ import java.util.Map;
 public interface UserMapp {
     @Select("select * from t_user where t_user.user_phone = #{user_phone}")
     TUser checkAcc(String phone);
-    @Select("select * from t_user where t_user.user_phone = #{phone}and t_user.user_password = #{pass}")
-//    @Select("select t_user.user_id,t_user.aa,t_user.bb from t_user")
-    Map<String,Object> login(@NotNull() String phone, String pass);
+
+    @SelectProvider(type = UserSelect.class,method = "selectUser")
+    Map<String,Object> login( @Param("phone") String phone, @Param("pass") String pass,@Param("fieleds") String fieleds);
 
 
 
