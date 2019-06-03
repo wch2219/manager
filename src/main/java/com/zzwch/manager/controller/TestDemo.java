@@ -5,13 +5,33 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TestDemo {
 
     public static void main(String[] strs){
-        method1();
-        method2();
-        method3();
+//        method1();
+//        method2();
+//        method3();
+        parent();
+    }
+
+
+    static void parent(){
+        String str = "@123 dsdas@大萨达撒 ";
+        Pattern pattern = Pattern.compile("@\\S+\\s");
+//        String[] split = pattern.split(str);
+//
+//        for (int i = 0; i < split.length; i++) {
+//            System.out.println(split[i]);
+//        }
+        Matcher matcher = pattern.matcher(str);
+       while ( matcher.find()){
+           System.out.println(matcher.start()+"-------"+matcher.end());
+           System.out.println(matcher.group());
+       }
+        System.out.println(str);
     }
 
     static void method1(){

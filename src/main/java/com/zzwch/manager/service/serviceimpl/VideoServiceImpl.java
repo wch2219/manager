@@ -15,6 +15,8 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public List<VideoInfo> videoList(int pageindex, int pagesize) {
-        return videoMapp.getVideoList(pageindex,pagesize);
+//        return videoMapp.getVideoList(pageindex,pagesize);
+
+        return  null;
     }
 }
